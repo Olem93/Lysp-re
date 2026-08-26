@@ -1,6 +1,7 @@
 let autoChange = 1;
 let timeOut;
 let seconds = 5000;
+let ligthsOff = true;
 
 // function lightsOff() {
 //   //document.body.style.backgroundImage = "url('lyspærePåBG.jpg')";
@@ -47,7 +48,7 @@ function lightsOff() {
   } else if (autoChange === 10) {
     document.body.style.backgroundImage = "url('lightOffBG4.jpg')";
     autoChange = 11;
-    seconds = 600;
+    seconds = 100;
   } else if (autoChange === 11) {
     document.body.style.backgroundImage = "url('lightOnBG.jpg')";
     autoChange = 12;
@@ -55,13 +56,9 @@ function lightsOff() {
   } else if (autoChange === 12) {
     document.body.style.backgroundImage = "url('lightOffBG5.jpg')";
     autoChange = 13;
-    seconds = 900;
-  } else if (autoChange === 13) {
-    document.body.style.backgroundImage = "url('lightOnBG.jpg')";
-    autoChange = 14;
-    seconds = 900;
+    seconds = 400;
   } else {
-    document.body.style.backgroundImage = "url('lightOffBG1.jpg')";
+    document.body.style.backgroundImage = "url('lightOnBG.jpg')";
   }
   timeOut = setTimeout(lightsOff, seconds);
 }
