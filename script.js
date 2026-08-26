@@ -5,6 +5,9 @@ let isLightOff = false;
 let audioFlicker = new Audio("lampflicker.mp3");
 let audioBuzz = new Audio("lampsound.mp3");
 let audioSwamp = new Audio("swampDialogue.mp3");
+let audioStartling = new Audio("startlingSound.mp3");
+let AudionotButtons = new Audio("notTheButtons.mp3");
+let audioMuffinman = new Audio("muffinMan.mp3");
 
 // function lightsOff() {
 //   //document.body.style.backgroundImage = "url('lyspærePåBG.jpg')";
@@ -96,8 +99,14 @@ function lightsOff() {
     seconds = 100;
     seconds = 900;
   } else if (autoChange === 16) {
+    document.body.style.backgroundImage = "url('lightOffBG11.jpg')";
+    stopAudio();
+    audioMuffinman.play();
+    seconds = 5000;
+  } else if (autoChange === 17) {
     document.body.style.backgroundImage = "url('lightOffBG9.jpg')";
     stopAudio();
+    audioStartling.play();
     audioSwamp.play();
     seconds = 5000;
   } else {
@@ -121,5 +130,5 @@ function stopAudio() {
   audioBuzz.currentTime = 0;
 }
 function getRandomNumber() {
-  return Math.floor(Math.random() * 17) + 1;
+  return Math.floor(Math.random() * 18) + 1;
 }
