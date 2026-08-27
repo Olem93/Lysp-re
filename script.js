@@ -17,7 +17,7 @@ let audioMuffinman = new Audio("muffinMan.mp3");
 let audioLightswitch = new Audio("lightswitch.mp3");
 let audioSteps1 = new Audio("steps1.mp3");
 let audioSteps2 = new Audio("steps2.mp3");
-let audioAllstar = new Audio("allstar.mp3");
+let audioAllstar = new Audio("soundtrackAllstar.mp3");
 
 //view
 
