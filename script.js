@@ -185,8 +185,8 @@ function lightsOff() {
       seconds = 3000;
       break;
       
-    //Default Case is what it sounds like it's the case that is run when the Value doesn't match any of the other cases so for this scenario anything that isn't 1-14
-    case default:
+    //Default is what it sounds like it's the case that is run when the Value doesn't match any of the other cases so for this scenario anything that isn't 1-14
+    default:
       document.body.style.backgroundImage = "url('lightOnBG.jpg')";
       stopTimeout();
       audioBuzz.loop = true;
