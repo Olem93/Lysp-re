@@ -12,7 +12,7 @@ let audioFlicker = new Audio("lampflicker.mp3");
 let audioBuzz = new Audio("lampsound.mp3");
 let audioSwamp = new Audio("swampDialogue.mp3");
 let audioStartling = new Audio("startlingSound.mp3");
-let AudionotButtons = new Audio("notTheButtons.mp3");
+let audioNotButtons = new Audio("notTheButtons.mp3");
 let audioMuffinman = new Audio("muffinMan.mp3");
 let audioLightswitch = new Audio("lightswitch.mp3");
 let audioSteps1 = new Audio("steps1.mp3");
@@ -152,7 +152,7 @@ function lightsOff() {
   } else if (autoChange === 14) {
     document.body.style.backgroundImage = "url('lightOffBG2.jpg')";
     stopAudio();
-    AudionotButtons.play();
+    audioNotButtons.play();
     seconds = 3000;
   } else {
     document.body.style.backgroundImage = "url('lightOnBG.jpg')";
