@@ -12,7 +12,7 @@ let audioFlicker = new Audio("lampflicker.mp3");
 let audioBuzz = new Audio("lampsound.mp3");
 let audioSwamp = new Audio("swampDialogue.mp3");
 let audioStartling = new Audio("startlingSound.mp3");
-let AudionotButtons = new Audio("notTheButtons.mp3");
+let audioNotButtons = new Audio("notTheButtons.mp3");
 let audioMuffinman = new Audio("muffinMan.mp3");
 let audioLightswitch = new Audio("lightswitch.mp3");
 let audioSteps1 = new Audio("steps1.mp3");
@@ -94,72 +94,104 @@ function changeLightState() {
 
 function lightsOff() {
   console.log(autoChange);
-  if (autoChange === 1) {
-    document.body.style.backgroundImage = "url('lightOnBG.jpg')";
-    audioFlicker.play();
-    audioBuzz.play();
-    seconds = 500;
-  } else if (autoChange === 2) {
-    document.body.style.backgroundImage = "url('lightOnBG.jpg')";
-    audioBuzz.play();
-    seconds = 200;
-  } else if (autoChange === 3) {
-    document.body.style.backgroundImage = "url('lightOnBG.jpg')";
-    audioBuzz.play();
-    seconds = 300;
-  } else if (autoChange === 4) {
-    document.body.style.backgroundImage = "url('lightOnBG.jpg')";
-    audioBuzz.play();
-    seconds = 800;
-  } else if (autoChange === 5) {
-    document.body.style.backgroundImage = "url('lightOffBG2.jpg')";
-    stopAudio();
-    seconds = 200;
-  } else if (autoChange === 6) {
-    document.body.style.backgroundImage = "url('lightOffBG2.jpg')";
-    stopAudio();
-    seconds = 200;
-  } else if (autoChange === 7) {
-    document.body.style.backgroundImage = "url('lightOffBG2.jpg')";
-    stopAudio();
-    seconds = 500;
-  } else if (autoChange === 8) {
-    document.body.style.backgroundImage = "url('lightOffBG3.jpg')";
-    stopAudio();
-    seconds = 800;
-  } else if (autoChange === 9) {
-    document.body.style.backgroundImage = "url('lightOffBG4.jpg')";
-    stopAudio();
-    seconds = 800;
-  } else if (autoChange === 10) {
-    document.body.style.backgroundImage = "url('lightOffBG8.jpg')";
-    audioSteps1.play();
-    stopAudio();
-    seconds = 800;
-  } else if (autoChange === 11) {
-    document.body.style.backgroundImage = "url('lightOffBG11.jpg')";
-    audioMuffinman.play();
-    stopAudio();
-    seconds = 5000;
-  } else if (autoChange === 12) {
-    document.body.style.backgroundImage = "url('lightOffBG6.jpg')";
-    stopAudio();
-    seconds = 600;
-  } else if (autoChange === 13) {
-    document.body.style.backgroundImage = "url('lightOffBG7.jpg')";
-    stopAudio();
-    seconds = 300;
-  } else if (autoChange === 14) {
-    document.body.style.backgroundImage = "url('lightOffBG2.jpg')";
-    stopAudio();
-    AudionotButtons.play();
-    seconds = 3000;
-  } else {
-    document.body.style.backgroundImage = "url('lightOnBG.jpg')";
-    stopTimeout();
-    audioBuzz.loop = true;
-    audioBuzz.play();
-    return;
+
+  /* 
+    Changed this to a switch Statement just for clarity.
+    It doesn't change the function but Switch Statements can often be faster to process.
+    - Fluffy
+  */
+  
+  switch(autoChange) {
+    /* Example Switch Case
+    'VALUE' refers to the Variable Switch is reading from in this case 'autoChange' which are just a number
+    
+    case VALUE: <- here if autoChange matches Value then this Block will be executed it's a comparison check by default e.g '=='
+      BODY OF CODE <- put your normal stuff here
+
+      break; <- This stops the execution of the whole switch block
+    */
+    case 1:
+      document.body.style.backgroundImage = "url('lightOnBG.jpg')";
+      audioFlicker.play();
+      audioBuzz.play();
+      seconds = 500;
+      break;
+    case 2:
+      document.body.style.backgroundImage = "url('lightOnBG.jpg')";
+      audioBuzz.play();
+      seconds = 200;
+      break;
+    case 3:
+      document.body.style.backgroundImage = "url('lightOnBG.jpg')";
+      audioBuzz.play();
+      seconds = 300;
+      break;
+    case 4:
+      document.body.style.backgroundImage = "url('lightOnBG.jpg')";
+      audioBuzz.play();
+      seconds = 800;
+      break;
+    case 5:
+      document.body.style.backgroundImage = "url('lightOffBG2.jpg')";
+      stopAudio();
+      seconds = 200;
+      break;
+    case 6:
+      document.body.style.backgroundImage = "url('lightOffBG2.jpg')";
+      stopAudio();
+      seconds = 200;
+      break;
+    case 7:
+      document.body.style.backgroundImage = "url('lightOffBG2.jpg')";
+      stopAudio();
+      seconds = 500;
+      break;
+    case 8:
+      document.body.style.backgroundImage = "url('lightOffBG3.jpg')";
+      stopAudio();
+      seconds = 800;
+      break;
+    case 9:
+      document.body.style.backgroundImage = "url('lightOffBG4.jpg')";
+      stopAudio();
+      seconds = 800;
+      break;
+    case 10:
+      document.body.style.backgroundImage = "url('lightOffBG8.jpg')";
+      audioSteps1.play();
+      stopAudio();
+      seconds = 800;
+      break;
+    case 11:
+      document.body.style.backgroundImage = "url('lightOffBG11.jpg')";
+      audioMuffinman.play();
+      stopAudio();
+      seconds = 5000;
+      break;
+    case 12:
+      document.body.style.backgroundImage = "url('lightOffBG6.jpg')";
+      stopAudio();
+      seconds = 600;
+      break;
+    case 13:
+      document.body.style.backgroundImage = "url('lightOffBG7.jpg')";
+      stopAudio();
+      seconds = 300;
+      break;
+    case 14:
+      document.body.style.backgroundImage = "url('lightOffBG2.jpg')";
+      stopAudio();
+      audioNotButtons.play();
+      seconds = 3000;
+      break;
+      
+    //Default is what it sounds like it's the case that is run when the Value doesn't match any of the other cases so for this scenario anything that isn't 1-14
+    default:
+      document.body.style.backgroundImage = "url('lightOnBG.jpg')";
+      stopTimeout();
+      audioBuzz.loop = true;
+      audioBuzz.play();
+      return;
   }
   autoChange = getRandomNumber();
   timeOut = setTimeout(lightsOff, seconds);
