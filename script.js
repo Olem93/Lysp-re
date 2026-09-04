@@ -3,6 +3,7 @@
 const app = document.getElementById("app");
 const audioAmbience = new Audio("soundtrack-lamp.mp3");
 let autoChange = 1;
+let switchChanger = 1;
 //let shrekChange = 1;
 let timeOut;
 let seconds = 5000;
@@ -27,11 +28,9 @@ function pageView() {
     <div style="background-color: transparent; width: 32px; height: 45px; position: absolute; top: 440px; left: 200px;" 
     onclick="buttonClicked(); new Audio('lightswitch.mp3').play();"></div>
     <div style="background-color: transparent; width: 140px; height: 600px; position: absolute; top: 120px; left: 800px;" 
-    onclick="doorClicked();"></div>
+    onclick="doorClicked()"></div>
      <div style="background-color: transparent; width: 140px; height: 300px; position: absolute; top: 240px; left: 600px;" 
-    onclick="shrekClicked();"></div>
-    <img style="width: 400px; height: auto; position: absolute; top: 730px; left: 500px;" src="soundtrack-enable.png"
-    onclick="playAmbience();">
+    onclick="shrekClicked()"></div>
     `;
 }
 
@@ -46,6 +45,7 @@ function doorClicked() {
     audioSteps2.play();
     audioAllstar.play();
     seconds = 13000;
+    stopAudio();
     stopTimeout();
   } else {
     changeLightState();
@@ -65,6 +65,7 @@ function shrekClicked() {
     audioStartling.play();
     audioSwamp.play();
     seconds = 6000;
+    stopAudio();
     stopTimeout();
   } else {
     changeLightState();
@@ -72,20 +73,76 @@ function shrekClicked() {
 }
 
 //---lights//
-function playAmbience() {
-  audioAmbience.play();
-}
+
+// switch (switchChanger) {
+//   case 1:
+//     document.body.style.backgroundImage = "url('lightOnBG.jpg')";
+//     audioFlicker.play();
+//     audioBuzz.loop = true;
+//     audioBuzz.play();
+//     break;
+//   case 2:
+//     document.body.style.backgroundImage = "url('lightOffBG10.jpg')"; // lys av, musikk trigger.
+//     audioAmbience.loop = true;
+//     audioAmbience.play();
+//     stopAudio();
+//     break;
+//   case 3:
+//     lightsOff();
+//     break;
+//   default:
+//     document.body.style.backgroundImage = "url('lightOffBG1.jpg')";
+//     stopAudio();
+//     stopTimeout();
+// }
 
 function buttonClicked() {
-  if (changeLightState()) {
+  if (switchChanger === 1) {
+    document.body.style.backgroundImage = "url('lightOnBG.jpg')"; //lyspære på normal
+    audioFlicker.play();
+    audioBuzz.loop = true;
+    audioBuzz.play();
+    switchChanger = 2;
+  } else if (switchChanger === 2) {
+    document.body.style.backgroundImage = "url('lightOffBG10.jpg')"; // lys av, musikk trigger.
+    audioAmbience.loop = true;
+    audioAmbience.play();
+    stopAudio();
+
+    switchChanger = 3;
+  } else if (switchChanger === 3) {
+    // kjører liftsOff funksjonen som kjører bilder i RNG
     lightsOff();
+    changeLightState();
+    switchChanger = 4;
   } else {
-    document.body.style.backgroundImage = "url('lightOffBG10.jpg')";
+    document.body.style.backgroundImage = "url('lightOffBG10.jpg')"; // lys av normal
     seconds = 5000;
-    autoChange = 1;
+    stopAudio();
     stopTimeout();
+    switchChanger = 3; // Kjører nr 3 igjen. Fra og med nå bytter den bare fram og tilbake
+    // mellom 3 og 4 til siden er oppdatert. Fungerer ikke helt pr nå, som om lightsOff() ikke start på nytt, til slutt er det bare normal pære.
   }
+  console.log(switchChanger);
 }
+
+// OG function buttonClicked() {
+//   if (changeLightState()) {
+//     lightsOff();
+//   } else {
+//     document.body.style.backgroundImage = "url('lightOffBG10.jpg')";
+//     seconds = 5000;
+//     autoChange = 1;
+//     stopTimeout();
+//   }
+// }
+
+// function lightOnFirst() {
+//   document.body.style.backgroundImage = "url('lightOnBG.jpg')";
+//   audioFlicker.play();
+//   audioBuzz.loop = true;
+//   audioBuzz.play();
+// }
 
 function changeLightState() {
   isLightOff = !isLightOff;
@@ -93,7 +150,6 @@ function changeLightState() {
 }
 
 function lightsOff() {
-  console.log(autoChange);
   if (autoChange === 1) {
     document.body.style.backgroundImage = "url('lightOnBG.jpg')";
     audioFlicker.play();
@@ -156,6 +212,7 @@ function lightsOff() {
     seconds = 3000;
   } else {
     document.body.style.backgroundImage = "url('lightOnBG.jpg')";
+    stopAudio();
     stopTimeout();
     audioBuzz.loop = true;
     audioBuzz.play();
@@ -166,8 +223,6 @@ function lightsOff() {
 }
 
 function stopTimeout() {
-  audioBuzz.pause();
-  audioBuzz.currentTime = 0;
   clearTimeout(timeOut, audioBuzz);
 }
 

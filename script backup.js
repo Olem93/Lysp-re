@@ -27,9 +27,11 @@ function pageView() {
     <div style="background-color: transparent; width: 32px; height: 45px; position: absolute; top: 440px; left: 200px;" 
     onclick="buttonClicked(); new Audio('lightswitch.mp3').play();"></div>
     <div style="background-color: transparent; width: 140px; height: 600px; position: absolute; top: 120px; left: 800px;" 
-    onclick="doorClicked()"></div>
+    onclick="doorClicked();"></div>
      <div style="background-color: transparent; width: 140px; height: 300px; position: absolute; top: 240px; left: 600px;" 
-    onclick="shrekClicked()"></div>
+    onclick="shrekClicked();"></div>
+    <img style="width: 400px; height: auto; position: absolute; top: 730px; left: 500px;" src="soundtrack-enable.png"
+    onclick="playAmbience();">
     `;
 }
 
@@ -70,33 +72,19 @@ function shrekClicked() {
 }
 
 //---lights//
+function playAmbience() {
+  audioAmbience.play();
+}
 
 function buttonClicked() {
   if (changeLightState()) {
-    lightOnFirst(); //første lys på, helt vanlig ingenting unormalt skjer.
-  } else if {
-    document.body.style.backgroundImage = "url('lightOffBG10.jpg')"; // lys av, musikk trigger.
-    audioAmbience.loop = true;
-    audioAmbience.play();
+    lightsOff();
+  } else {
+    document.body.style.backgroundImage = "url('lightOffBG10.jpg')";
+    seconds = 5000;
+    autoChange = 1;
+    stopTimeout();
   }
-}
-
-// OG function buttonClicked() {
-//   if (changeLightState()) {
-//     lightsOff();
-//   } else {
-//     document.body.style.backgroundImage = "url('lightOffBG10.jpg')";
-//     seconds = 5000;
-//     autoChange = 1;
-//     stopTimeout();
-//   }
-// }
-
-function lightOnFirst() {
-  document.body.style.backgroundImage = "url('lightOnBG.jpg')";
-  audioFlicker.play();
-  audioBuzz.loop = true;
-  audioBuzz.play();
 }
 
 function changeLightState() {
